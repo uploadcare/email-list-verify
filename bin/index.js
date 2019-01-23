@@ -18,7 +18,7 @@ const pickRandomValue = obj => {
 };
 
 const spinner = ora({ text: "wtf...", spinner: pickRandomValue(cliSpinners) });
-const queue = new Queue({ concurrency: 10 });
+const queue = new Queue({ concurrency: 20 });
 let firstLine = true;
 
 try {
@@ -32,35 +32,34 @@ try {
     "-o": "--output"
   });
 
-  console.log(args);
-
   const inputFile = args["_"][0];
   const outputFile = args["--output"] || "result.txt";
 
   if (!inputFile) {
-    throw Error("Requires default argument for input file: email-verificator [FILE]");
+    throw Error(
+      "Requires default argument for input file: email-verificator [FILE]"
+    );
   }
 
   const output = fs.createWriteStream(outputFile);
   const tool = readline.createInterface({
-    input: fs.createReadStream("info.txt")
+    input: fs.createReadStream(inputFile)
   });
 
   tool.on("line", line => {
-    spinner.start();
-
     queue.add(() =>
       verify(line)
-        .then(info => info.success)
-        .catch(() => false)
-        .then(result => {
-          spinner.text = `${line} is ${result ? "valid" : "invalid"}`;
+        .then(info => ({ result: info.success, info: info.info }))
+        .catch(error => ({ result: false, info: error.message }))
+        .then(({ result, info }) => {
+          spinner.text = info;
           output.write(`${line}, ${+result}\n`);
         })
     );
 
     if (firstLine) {
       firstLine = false;
+      spinner.start();
 
       queue.onIdle().then(() => {
         spinner.stopAndPersist({
