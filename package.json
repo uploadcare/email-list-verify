@@ -1,6 +1,6 @@
 {
   "name": "@jeetiss/email-verificator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "bin:": {
     "email-verificator": "./bin/index.js"
   },

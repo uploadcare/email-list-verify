@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const verifier = require("email-verify");
 const fs = require("fs");
 const { promisify } = require("util");
