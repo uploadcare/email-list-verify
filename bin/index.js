@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const verifier = require("email-verify");
+const EmailValidator = require("email-deep-validator");
 const fs = require("fs");
 const { promisify } = require("util");
 const readline = require("readline");
@@ -9,7 +9,8 @@ const cliSpinners = require("cli-spinners");
 const ora = require("ora");
 const arg = require("arg");
 
-const verify = promisify(verifier.verify);
+const emailValidator = new EmailValidator();
+const verify = emailValidator.verify.bind(emailValidator);
 
 const pickRandomValue = obj => {
   const keys = Object.keys(obj);
@@ -48,14 +49,22 @@ try {
     input: fs.createReadStream(inputFile)
   });
 
+  const extractResult = email => info => ({
+    result: info.wellFormed && info.validDomain && info.validMailbox,
+    info:
+      info.wellFormed && info.validDomain && info.validMailbox
+        ? `${email} is a valid address`
+        : `${email} is an invalid address`
+  });
+
   tool.on("line", line => {
     queue.add(() =>
       verify(line)
-        .then(info => ({ result: info.success, info: info.info }))
+        .then(extractResult(line))
         .catch(error => ({ result: false, info: error.message }))
         .then(({ result, info }) => {
           spinner.text = info;
-          output.write(`${line}, ${+result}\n`);
+          output.write(`${line}, ${result}\n`);
         })
     );
 
