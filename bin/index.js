@@ -7,47 +7,39 @@ const readline = require("readline");
 const Queue = require("p-queue");
 const cliSpinners = require("cli-spinners");
 const ora = require("ora");
-const arg = require("arg");
+const { usage, arg } = require("../src/args");
 
 const emailValidator = new EmailValidator();
 const verify = emailValidator.verify.bind(emailValidator);
 
 const pickRandomValue = obj => {
-  const keys = Object.keys(obj);
-
-  const randomValue = Math.round(Math.random() * (keys.length - 1));
-
-  return obj[keys[randomValue]];
+  const values = Object.values(obj);
+  return values[Math.floor(Math.random() * values.length)];
 };
 
-const spinner = ora({ text: "wtf...", spinner: pickRandomValue(cliSpinners) });
-const queue = new Queue({ concurrency: 20 });
+const spinner = ora({
+  text: "starting...",
+  spinner: pickRandomValue(cliSpinners)
+});
 let firstLine = true;
 
 try {
-  const args = arg({
-    // Types
-    "--help": Boolean,
-    "--output": String,
+  const args = arg();
+  const inputFile = args.file;
+  const outputFile = args.output;
 
-    // Aliases
-    "-h": "--help",
-    "-o": "--output"
-  });
-
-  const inputFile = args["_"][0];
-  const outputFile = args["--output"] || "result.txt";
-
-  if (!inputFile) {
-    throw Error(
-      "Requires default argument for input file: email-verificator [FILE]"
-    );
+  if (args.help || !inputFile) {
+    return usage();
   }
 
+  spinner.start();
+
   const output = fs.createWriteStream(outputFile);
-  const tool = readline.createInterface({
+  const input = readline.createInterface({
     input: fs.createReadStream(inputFile)
   });
+
+  const queue = new Queue({ concurrency: args.concurrency });
 
   const extractResult = email => info => ({
     result: info.wellFormed && info.validDomain && info.validMailbox,
@@ -57,7 +49,7 @@ try {
         : `${email} is an invalid address`
   });
 
-  tool.on("line", line => {
+  input.on("line", line => {
     queue.add(() =>
       verify(line)
         .then(extractResult(line))
@@ -70,7 +62,6 @@ try {
 
     if (firstLine) {
       firstLine = false;
-      spinner.start();
 
       queue.onIdle().then(() => {
         spinner.stopAndPersist({
@@ -79,6 +70,10 @@ try {
         });
       });
     }
+  });
+
+  input.on("error", error => {
+    console.log(error.message);
   });
 } catch (err) {
   console.log(err.message);
