@@ -1,6 +1,6 @@
-# Email-verificator
+# Email-list-verify
 
-<a href="https://uploadcare.com/?utm_source=github&utm_campaign=email-verificator">
+<a href="https://uploadcare.com/?utm_source=github&utm_campaign=email-list-verify">
     <img align="right" width="64" height="64"
          src="https://ucarecdn.com/2f4864b7-ed0e-4411-965b-8148623aa680/uploadcare-logo-mark.svg"
          alt="">
@@ -22,7 +22,7 @@ Verify every email in file
 
 <!-- tocstop -->
 
-Long description.
+<!-- Long description. -->
 
 ## Requirements
 
@@ -31,13 +31,13 @@ node and npm
 ## Install
 
 ```bash
-npm i -g @jeetiss/email-verificator
+npm i -g @uploadcare/email-list-verify
 ```
 
 or
 
 ```bash
-yarn add global @jeetiss/email-verificator
+yarn add global @uploadcare/email-list-verify
 ```
 
 ## CLI Usage
@@ -45,9 +45,9 @@ yarn add global @jeetiss/email-verificator
 ```bash
 Usage
 
-  $ email-verificator -o mails.csv mails-to-test.csv
-  $ email-verificator -c 50 mails.csv
-  $ email-verificator --help
+  $ email-list-verify -o mails.csv mails-to-test.csv
+  $ email-list-verify -c 50 mails.csv
+  $ email-list-verify --help
 
 Options
 

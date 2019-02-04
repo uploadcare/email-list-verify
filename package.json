@@ -1,8 +1,8 @@
 {
-  "name": "@jeetiss/email-verificator",
-  "version": "0.0.7",
+  "name": "@uploadcare/email-list-verify",
+  "version": "0.0.1",
   "bin": {
-    "email-verificator": "./bin/index.js"
+    "email-list-verify": "./bin/index.js"
   },
   "description": "verify every email in file",
   "scripts": {
@@ -11,10 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeetiss/email-verificator.git"
+    "url": "git+https://github.com/uploadcare/email-list-verify.git"
   },
   "bugs": {
-    "url": "https://github.com/jeetiss/email-verificator/issues"
+    "url": "https://github.com/uploadcare/email-list-verify/issues"
   },
   "keywords": [
     ""
