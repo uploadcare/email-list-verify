@@ -18,6 +18,7 @@ Verify every email in file
 - [Security issues](#security-issues)
 - [Feedback](#feedback)
 - [Authors](#authors)
+- [License](#license)
 
 <!-- tocstop -->
 
@@ -75,6 +76,11 @@ request at [hello@uploadcare.com][uc-email-hello].
 - [Elijah][dayton-link] — idea, readme
 - [Dmitry Ivakhnenko][jeetiss-link] — code
 - [Siarhei Bautrukevich][bautrukevich-link] — review
+
+## License
+
+Copyright © 2019, [Dmitry Ivakhnenko](https://github.com/jeetiss).
+Released under the [MIT License](LICENSE).
 
 [badge-stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
 [badge-stack-url]: https://stackshare.io/uploadcare/stacks/
