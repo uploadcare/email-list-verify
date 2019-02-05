@@ -1,5 +1,5 @@
 {
-  "name": "@uploadcare/email-list-verify",
+  "name": "email-list-verify",
   "version": "0.0.1",
   "bin": {
     "email-list-verify": "./bin/index.js"
