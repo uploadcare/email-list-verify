@@ -6,19 +6,37 @@
          alt="">
 </a>
 
-Verify every email in file
-
 [![Uploadcare stack on StackShare][badge-stack-img]][badge-stack-url]
+
+CLI-tool to Verify a list of emails in a file. `email-list-verify` is fast,
+lightweight, and helps validate emails stored in a plain text file where each
+email sits on a separate line (a single-column CSV does the trick too).
+
+The validation accuracy is similar to that of the free services you can find
+in organic search results. We tested the accuracy on the sample of 1000 emails.
+
+The output CSV file will have two unnamed columns holding emails and check
+results respectively.
+
+In the check results you will get the three possible values:
+
+* `true`, email is valid.
+* `false`, email is invalid.
+* `null`, email validation is disabled on a mail service provider, in many cases
+  that can be considered `true`.
+
+The `email-list-verify` script is multi-threaded and allows controlling its
+concurrency via the `-c` option, see [CLI Usage](#cli-usage).
 
 <!-- toc -->
 
-- [Requirements](#requirements)
-- [Install](#install)
-- [CLI Usage](#cli-usage)
-- [Security issues](#security-issues)
-- [Feedback](#feedback)
-- [Authors](#authors)
-- [License](#license)
+* [Requirements](#requirements)
+* [Install](#install)
+* [CLI Usage](#cli-usage)
+* [Security issues](#security-issues)
+* [Feedback](#feedback)
+* [Authors](#authors)
+* [License](#license)
 
 <!-- tocstop -->
 
@@ -26,7 +44,10 @@ Verify every email in file
 
 ## Requirements
 
-node and npm
+You will need NodeJS and npm to run `email-list-verify`,
+
+* [Get NodeJs][ext-nodejs-get]
+* [Get npm][ext-npm-get]
 
 ## Install
 
@@ -51,17 +72,22 @@ Usage
 
 Options
 
-  --file file                The input file with emails.
+  --file, file               The input file with emails.
   -o, --output file          The output file.
   -c, --concurrency number   Concurrency.
   -h, --help                 Print this usage guide.
 ```
 
+While most of the options are straightforward, `-c` could use additional
+explanation: it controls the number of threads for executing
+`email-list-verify` and defaults to `20`. Depending on the speed of your
+internet connection, you can set it to lower (slower) or higher values (faster).
+
 ## Security issues
 
 If you think you ran into something in Uploadcare libraries which might have
-security implications, please hit us up at [bugbounty@uploadcare.com][uc-email-bounty]
-or Hackerone.
+security implications, please hit us up at
+[bugbounty@uploadcare.com][uc-email-bounty] or Hackerone.
 
 We'll contact you personally in a short time to fix an issue through co-op and
 prior to any public disclosure.
@@ -73,15 +99,16 @@ request at [hello@uploadcare.com][uc-email-hello].
 
 ## Authors
 
-- [Elijah][dayton-link] — idea, readme
-- [Dmitry Ivakhnenko][jeetiss-link] — code
-- [Siarhei Bautrukevich][bautrukevich-link] — review
+* [Elijah][dayton-link], Idea, Readme
+* [Dmitry Ivakhnenko][jeetiss-link], Code
+* [Siarhei Bautrukevich][bautrukevich-link], Review
 
 ## License
 
-Copyright © 2019, [Dmitry Ivakhnenko](https://github.com/jeetiss).
 Released under the [MIT License](LICENSE).
 
+[ext-nodejs-get]: https://nodejs.org/en/download/
+[ext-npm-get]: https://www.npmjs.com/get-npm
 [badge-stack-img]: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
 [badge-stack-url]: https://stackshare.io/uploadcare/stacks/
 [uc-email-bounty]: mailto:bugbounty@uploadcare.com
