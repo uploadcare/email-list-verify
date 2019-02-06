@@ -52,13 +52,13 @@ You will need NodeJS and npm to run `email-list-verify`,
 ## Install
 
 ```bash
-npm i -g @uploadcare/email-list-verify
+npm i -g email-list-verify
 ```
 
 or
 
 ```bash
-yarn add global @uploadcare/email-list-verify
+yarn add global email-list-verify
 ```
 
 ## CLI Usage

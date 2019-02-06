@@ -4,7 +4,7 @@
   "bin": {
     "email-list-verify": "./bin/index.js"
   },
-  "description": "verify every email in file",
+  "description": "CLI-tool to Verify a list of emails in a file.",
   "scripts": {
     "update-toc": "markdown-toc -i readme.md",
     "test": "echo \"Error: no test specified\" && exit 1"
