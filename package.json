@@ -1,15 +1,25 @@
 {
-  "name": "@jeetiss/email-verificator",
-  "version": "0.0.7",
+  "name": "email-list-verify",
+  "version": "0.0.1",
   "bin": {
-    "email-verificator": "./bin/index.js"
+    "email-list-verify": "./bin/index.js"
   },
   "description": "verify every email in file",
   "scripts": {
+    "update-toc": "markdown-toc -i readme.md",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uploadcare/email-list-verify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uploadcare/email-list-verify/issues"
+  },
+  "keywords": [
+    ""
+  ],
+  "author": "Dmitry Ivakhnenko <di@uploadcare.com> (https://github.com/jeetiss)",
   "license": "MIT",
   "dependencies": {
     "cli-spinners": "^1.3.1",
@@ -19,5 +29,8 @@
     "ora": "^3.0.0",
     "p-queue": "^3.0.0",
     "progress": "^2.0.3"
+  },
+  "devDependencies": {
+    "markdown-toc": "^1.2.0"
   }
 }
