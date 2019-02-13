@@ -1,0 +1,4 @@
+# This list of authors is based on the git history of this repo.
+
+Ivakhnenko Dmitry <jeetiss@ya.ru>
+Siarhei Bautrukevich <sb@uploadcare.com>
