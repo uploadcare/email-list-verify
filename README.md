@@ -6,8 +6,6 @@
          alt="">
 </a>
 
-[![Uploadcare stack on StackShare][badge-stack-img]][badge-stack-url]
-
 CLI-tool to Verify a list of emails in a file. `email-list-verify` is fast,
 lightweight, and helps validate emails stored in a plain text file where each
 email sits on a separate line (a single-column CSV does the trick too).
